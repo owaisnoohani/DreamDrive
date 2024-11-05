@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Admin - Sold Cars</title>
+</head>
+<body>
+<h1>Admin - Sold Cars</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Car Make</th>
+    <th>Model</th>
+    <th>Year</th>
+    <th>Price</th>
+    <th>Buyer Name</th>
+    <th>Buyer Email</th>
+    <th>Sale Date</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="sale : ${sales}">
+    <td th:text="${sale.car.make}"></td>
+    <td th:text="${sale.car.model}"></td>
+    <td th:text="${sale.car.year}"></td>
+    <td>
+      <form th:action="@{/admin/update-sale}" method="post">
+        <input type="hidden" name="saleId" th:value="${sale.id}" />
+        <input type="text" name="newPrice" th:value="${sale.car.price}" />
+        <input type="text" name="newBuyerName" th:value="${sale.buyerName}" />
+        <input type="text" name="newBuyerEmail" th:value="${sale.buyerEmail}" />
+        <button type="submit">Update</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

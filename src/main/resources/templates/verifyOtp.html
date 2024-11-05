@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Verify OTP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            margin-right: 10px;
+        }
+        button {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049; /* Darker green */
+        }
+    </style>
+</head>
+<body>
+<h1>Verify OTP</h1>
+<form th:action="@{/verifyOtp}" method="post">
+    <input type="hidden" th:value="${email}" name="email" />
+    <div>
+        <label for="otp">Enter OTP:</label>
+        <input type="text" id="otp" name="otp" required />
+    </div>
+    <button type="submit">Verify OTP</button>
+    <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+</form>
+</body>
+</html>
